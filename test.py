@@ -54,7 +54,7 @@ def process_file(file:Path, save_to: Path, device:str):
 def process_folder(input_folder:Path, output_folder:Path, device:str, progress:st):
     input_files = list(input_folder.iterdir())
     for i, file in enumerate(input_files):
-        if file.is_file():
+        if file.is_file() and file.suffix.lower() in [".png", ".jpg", ".jpeg", ".bmp", ".tiff", ".gif", ".webp"]:
             process_file(file, output_folder, device)
             progress.progress((i + 1) / len(input_files), text=f"Processing {file.name}")
     progress.progress(1.0, text="Processing completed")
